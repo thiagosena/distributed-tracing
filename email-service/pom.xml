@@ -29,6 +29,11 @@
             <artifactId>email</artifactId>
             <version>${email.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.thiagosena</groupId>
+            <artifactId>report</artifactId>
+            <version>${report.version}</version>
+        </dependency>
 
         <!-- H2 database -->
         <dependency>
