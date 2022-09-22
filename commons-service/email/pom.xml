@@ -4,22 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.thiagosena</groupId>
-        <artifactId>kafka-opentelemetry</artifactId>
+        <artifactId>commons</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>commons</artifactId>
+    <artifactId>email</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <name>commons-service</name>
-    <description>Parent service to share entities</description>
-
-    <modules>
-        <module>report</module>
-        <module>user</module>
-        <module>email</module>
-    </modules>
+    <name>email</name>
+    <description>Email entity to share with all project</description>
 
     <properties>
         <java.version>17</java.version>
