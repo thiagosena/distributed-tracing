@@ -4,6 +4,7 @@ import com.thiagosena.service.user.application.web.payloads.ReportResponse;
 import com.thiagosena.service.user.application.web.payloads.UserRequest;
 import com.thiagosena.service.user.application.web.payloads.UserResponse;
 import com.thiagosena.service.user.domain.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteUser(@PathVariable Long id) {
         service.deleteById(id);
     }

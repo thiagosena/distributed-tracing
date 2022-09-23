@@ -35,6 +35,7 @@ public class ReportController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteReport(@PathVariable Long id) {
         service.deleteById(id);
     }
