@@ -15,19 +15,21 @@ distributed system.
 
 The collection of Spans that have the same root is considered to create a group called trace.
 
-## Requirements 🛠
+## ✅ Requirements
 
 - Git
 - JDK 17
 - Apache Maven
 
-## How to Run 🚀
+## 🚀 How to Run Local
 
 Execute the docker-compose and then execute all services (email-service, user-service and report-service)
 
 ```sh
+# Start kafka, kafka-ui, zookeeper, jaeger and sleuth
 docker-compose up -d
 
+# Clean and compile all projects
 mvn clean install
 
 # Runing user-service
@@ -43,7 +45,7 @@ cd email-service
 mvn spring-boot:run
 ```
 
-## Libraries used 📖
+## 📖 Local Dependencies
 
 - [**OpenTelemetry**](https://opentelemetry.io): also known as OTel for short, is an open source observability framework with ready-to-use
   implementations to enable the effective creation and collection
@@ -57,7 +59,7 @@ mvn spring-boot:run
 - [**H2 Database**](https://www.h2database.com/html/main.html): is a relational database management system written in Java. It can be embedded in Java applications or run in client-server mode. The software is available as open source software Mozilla
 - [**Actuator**](https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/): is mainly used to expose operational information about the running application — health, metrics, info, dump, env, etc.
 
-## System Design Architecture 🗼
+## 🗼 System Design Architecture
 
 Let’s design three Spring Boot microservices:
 
@@ -71,7 +73,7 @@ Let’s design three Spring Boot microservices:
   <span>Figure 1: System design architecture for this project</span>
 </p>
 
-## Package Structure 📦
+## 📦 Package Structure
 
 Using a monorepo, we have the project structure as follows:
 
