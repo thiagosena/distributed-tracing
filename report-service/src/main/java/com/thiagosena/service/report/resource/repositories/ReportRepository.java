@@ -1,6 +1,6 @@
 package com.thiagosena.service.report.resource.repositories;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

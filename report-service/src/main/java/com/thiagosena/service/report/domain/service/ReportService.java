@@ -1,6 +1,6 @@
 package com.thiagosena.service.report.domain.service;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import com.thiagosena.service.report.application.web.payloads.ReportRequest;
 import com.thiagosena.service.report.application.web.payloads.ReportResponse;
 

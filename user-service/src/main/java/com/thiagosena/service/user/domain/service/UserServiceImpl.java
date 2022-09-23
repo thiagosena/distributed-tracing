@@ -1,6 +1,7 @@
 package com.thiagosena.service.user.domain.service;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
+import com.thiagosena.entities.User;
 import com.thiagosena.service.user.application.web.payloads.ReportResponse;
 import com.thiagosena.service.user.application.web.payloads.UserRequest;
 import com.thiagosena.service.user.application.web.payloads.UserResponse;
@@ -8,7 +9,6 @@ import com.thiagosena.service.user.domain.exceptions.UserNotFoundException;
 import com.thiagosena.service.user.resource.gateway.ReportGateway;
 import com.thiagosena.service.user.resource.gateway.payload.ReportDto;
 import com.thiagosena.service.user.resource.repositories.UserRepository;
-import com.thiagosena.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

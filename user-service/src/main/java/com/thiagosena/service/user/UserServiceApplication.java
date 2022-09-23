@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EntityScan("com.thiagosena.user")
+@EntityScan("com.thiagosena.entities")
 @EnableFeignClients
 public class UserServiceApplication {
 

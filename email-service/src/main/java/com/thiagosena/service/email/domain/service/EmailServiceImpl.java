@@ -1,7 +1,7 @@
 package com.thiagosena.service.email.domain.service;
 
-import com.thiagosena.email.Email;
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Email;
+import com.thiagosena.entities.Report;
 import com.thiagosena.service.email.application.web.payloads.EmailResponse;
 import com.thiagosena.service.email.domain.exceptions.EmailNotFoundException;
 import com.thiagosena.service.email.resource.repositories.EmailRepository;

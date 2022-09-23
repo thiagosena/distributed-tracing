@@ -1,6 +1,6 @@
 package com.thiagosena.service.report.application.configs;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import com.thiagosena.service.report.resource.repositories.ReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

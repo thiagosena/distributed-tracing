@@ -1,6 +1,6 @@
 package com.thiagosena.service.user.resource.gateway;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import com.thiagosena.service.user.resource.gateway.payload.ReportDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;

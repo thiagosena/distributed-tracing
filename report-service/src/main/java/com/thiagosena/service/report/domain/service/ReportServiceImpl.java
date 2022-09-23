@@ -1,6 +1,6 @@
 package com.thiagosena.service.report.domain.service;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import com.thiagosena.service.report.application.web.payloads.ReportRequest;
 import com.thiagosena.service.report.application.web.payloads.ReportResponse;
 import com.thiagosena.service.report.domain.exceptions.ReportNotFoundException;
@@ -30,9 +30,9 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public ReportResponse newReport(ReportRequest reportDto) {
+    public ReportResponse newReport(ReportRequest reportRequest) {
         log.info("Saving new report into database");
-        Report newReport = repository.save(new Report(reportDto.userId(), reportDto.report()));
+        final Report newReport = repository.save(new Report(reportRequest.userId(), reportRequest.report()));
         log.info("Send to reports topic");
         kafkaTemplate.send(this.topic, newReport);
         return new ReportResponse(newReport.getId(), newReport.getUserId(), newReport.getReport());
@@ -40,13 +40,13 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<Report> findAll() {
-        log.info("Listing all users");
+        log.info("Listing all reports");
         return repository.findAll();
     }
 
     @Override
     public Report findById(Long id) {
-        log.info("Listing info about user with id: {}", id);
+        log.info("Listing info about report with id: {}", id);
         return repository.findById(id).orElseThrow(() -> new ReportNotFoundException(id));
     }
 

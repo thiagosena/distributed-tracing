@@ -1,6 +1,6 @@
 package com.thiagosena.service.email.application.configs.kafka;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

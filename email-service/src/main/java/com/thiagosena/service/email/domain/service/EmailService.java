@@ -1,6 +1,6 @@
 package com.thiagosena.service.email.domain.service;
 
-import com.thiagosena.email.Email;
+import com.thiagosena.entities.Email;
 import com.thiagosena.service.email.application.web.payloads.EmailResponse;
 
 import java.util.List;

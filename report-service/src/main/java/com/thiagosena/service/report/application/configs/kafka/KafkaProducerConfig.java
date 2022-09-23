@@ -1,6 +1,6 @@
 package com.thiagosena.service.report.application.configs.kafka;
 
-import com.thiagosena.report.Report;
+import com.thiagosena.entities.Report;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

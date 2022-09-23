@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan("com.thiagosena.report")
+@EntityScan("com.thiagosena.entities")
 public class ReportServiceApplication {
 
     public static void main(String[] args) {

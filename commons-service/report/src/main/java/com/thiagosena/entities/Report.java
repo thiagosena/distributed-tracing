@@ -1,4 +1,4 @@
-package com.thiagosena.report;
+package com.thiagosena.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +16,12 @@ public class Report {
     }
 
     public Report(Long userId, String report) {
+        this.userId = userId;
+        this.report = report;
+    }
+
+    public Report(Long id, Long userId, String report) {
+        this.id = id;
         this.userId = userId;
         this.report = report;
     }

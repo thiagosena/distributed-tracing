@@ -1,4 +1,4 @@
-package com.thiagosena.email;
+package com.thiagosena.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

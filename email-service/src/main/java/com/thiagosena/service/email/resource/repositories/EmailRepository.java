@@ -1,6 +1,6 @@
 package com.thiagosena.service.email.resource.repositories;
 
-import com.thiagosena.email.Email;
+import com.thiagosena.entities.Email;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
