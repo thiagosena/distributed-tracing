@@ -3,14 +3,15 @@ package com.thiagosena.service.report.domain.service;
 import com.thiagosena.entities.Report;
 import com.thiagosena.factories.ReportFactory;
 import com.thiagosena.service.report.application.web.payloads.ReportRequest;
+import com.thiagosena.service.report.domain.exceptions.ReportNotFoundException;
 import com.thiagosena.service.report.resource.repositories.ReportRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ReportServiceTest {
@@ -48,6 +49,18 @@ public class ReportServiceTest {
         Report report = service.findById(reportId);
         assertNotNull(report);
         assertEquals(reportId, report.getId());
+    }
+
+    @Test
+    void givenReportIdThatNotExist_thenThrowReportNotFoundException() {
+        var reportId = 0L;
+        when(repository.findById(reportId)).thenReturn(Optional.empty());
+        ReportNotFoundException thrown = assertThrows(
+                ReportNotFoundException.class,
+                () -> service.findById(reportId),
+                "Expected ReportNotFound, but it didn't"
+        );
+        assertEquals("Could not find report with id=" + reportId, thrown.getMessage());
     }
 
     @Test
