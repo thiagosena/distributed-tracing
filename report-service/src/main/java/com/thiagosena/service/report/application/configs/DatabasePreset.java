@@ -17,6 +17,7 @@ public class DatabasePreset {
         return args -> {
             logger.info("Preloading " + repository.save(new Report(1L, "Stole ring and gave it as gift.")));
             logger.info("Preloading " + repository.save(new Report(2L, "Got the ring as the gift")));
+            logger.info("Preloading " + repository.save(new Report(1L, "Another report for user 1")));
         };
     }
 }
