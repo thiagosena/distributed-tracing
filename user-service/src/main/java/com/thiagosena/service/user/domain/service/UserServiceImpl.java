@@ -52,11 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ReportResponse createReportForCustomerId(Long id) {
+    public ReportResponse createReportForCustomer(Long id) {
         log.info("Creating new report for user: {}", id);
 
         ReportDto reportDto = new ReportDto(id, "This is a new generated report for user " + id);
-        Report reportEntity = this.reportGateway.createReportForCustomerId(reportDto);
+        Report reportEntity = this.reportGateway.createReportForCustomer(reportDto);
 
         return new ReportResponse(reportEntity.getId(), reportEntity.getUserId(), reportEntity.getReport());
     }

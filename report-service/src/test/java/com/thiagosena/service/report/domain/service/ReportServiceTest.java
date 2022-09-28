@@ -52,7 +52,7 @@ public class ReportServiceTest {
     }
 
     @Test
-    void givenReportIdThatNotExist_thenThrowReportNotFoundException() {
+    void givenReportId_thenThrowReportNotFoundException() {
         var reportId = 0L;
         when(repository.findById(reportId)).thenReturn(Optional.empty());
         ReportNotFoundException thrown = assertThrows(
@@ -64,7 +64,7 @@ public class ReportServiceTest {
     }
 
     @Test
-    void givenReportId_thenDeteleReport() {
+    void givenReportId_thenDeleteReport() {
         var reportId = 1L;
         doNothing().when(repository).deleteById(reportId);
         service.deleteById(reportId);

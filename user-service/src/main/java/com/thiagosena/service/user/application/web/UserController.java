@@ -37,7 +37,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/{id}/generate-report")
     ReportResponse generateReport(@PathVariable Long id) {
-        return this.service.createReportForCustomerId(id);
+        return this.service.createReportForCustomer(id);
     }
 
     @DeleteMapping("/{id}")

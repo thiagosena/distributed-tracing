@@ -13,7 +13,7 @@ public interface UserService {
 
     UserResponse findById(Long id);
 
-    ReportResponse createReportForCustomerId(Long id);
+    ReportResponse createReportForCustomer(Long id);
 
     void deleteById(Long id);
 }

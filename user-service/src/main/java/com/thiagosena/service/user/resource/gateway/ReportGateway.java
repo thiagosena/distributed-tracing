@@ -12,5 +12,5 @@ public interface ReportGateway {
 
     @PostMapping("/api/reports")
     @ResponseStatus(HttpStatus.CREATED)
-    Report createReportForCustomerId(ReportDto reportDto);
+    Report createReportForCustomer(ReportDto reportDto);
 }
