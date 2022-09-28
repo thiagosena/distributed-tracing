@@ -2,19 +2,18 @@ package com.thiagosena.application.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thiagosena.service.report.ReportServiceApplication;
-import com.thiagosena.service.report.application.web.controllers.ReportController;
 import com.thiagosena.service.report.application.web.payloads.ReportResponse;
 import com.thiagosena.service.report.domain.exceptions.ReportNotFoundException;
 import com.thiagosena.service.report.domain.service.ReportService;
-import com.thiagosena.service.report.resource.repositories.ReportRepository;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -25,14 +24,11 @@ import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
+@AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = {ReportServiceApplication.class})
 @EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9099", "port=9099"})
@@ -55,26 +51,17 @@ public class ReportControllerIntegrationTest {
 
     KafkaMessageListenerContainer<String, String> container;
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Resource
-    private EmbeddedKafkaBroker embeddedKafkaBroker;
-
-    @Resource
-    private ReportController reportController;
-
-    @Resource
+    @Autowired
     private ObjectMapper objectMapper;
 
-    @Resource
+    @Autowired
     private ReportService service;
 
-    @Resource
-    private ReportRepository repository;
-
     @BeforeAll
-    void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(reportController).build();
+    void setUp(@Autowired EmbeddedKafkaBroker embeddedKafkaBroker) {
         Map<String, Object> configs = new HashMap<>(KafkaTestUtils.consumerProps("consumer", "false", embeddedKafkaBroker));
         DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(configs, new StringDeserializer(), new StringDeserializer());
         ContainerProperties containerProperties = new ContainerProperties(TOPIC_NAME);

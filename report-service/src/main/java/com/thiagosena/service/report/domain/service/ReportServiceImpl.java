@@ -39,15 +39,24 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report> findAll() {
+    public List<ReportResponse> findAll() {
         log.info("Listing all reports");
-        return repository.findAll();
+        List<Report> reports = repository.findAll();
+        return reports
+                .stream()
+                .map(report -> new ReportResponse(
+                        report.getId(),
+                        report.getUserId(),
+                        report.getReport()
+                ))
+                .toList();
     }
 
     @Override
-    public Report findById(Long id) {
+    public ReportResponse findById(Long id) {
         log.info("Listing info about report with id: {}", id);
-        return repository.findById(id).orElseThrow(() -> new ReportNotFoundException(id));
+        Report report = repository.findById(id).orElseThrow(() -> new ReportNotFoundException(id));
+        return new ReportResponse(report.getId(), report.getUserId(), report.getReport());
     }
 
     @Override

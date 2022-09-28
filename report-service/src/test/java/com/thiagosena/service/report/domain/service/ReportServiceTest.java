@@ -3,6 +3,7 @@ package com.thiagosena.service.report.domain.service;
 import com.thiagosena.entities.Report;
 import com.thiagosena.factories.ReportFactory;
 import com.thiagosena.service.report.application.web.payloads.ReportRequest;
+import com.thiagosena.service.report.application.web.payloads.ReportResponse;
 import com.thiagosena.service.report.domain.exceptions.ReportNotFoundException;
 import com.thiagosena.service.report.resource.repositories.ReportRepository;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import static org.mockito.Mockito.*;
 
 public class ReportServiceTest {
 
+    @SuppressWarnings("unchecked")
     private final KafkaTemplate<String, Report> kafkaTemplate = mock(KafkaTemplate.class);
     private final ReportRepository repository = mock(ReportRepository.class);
     private final ReportService service = new ReportServiceImpl(repository, kafkaTemplate);
@@ -38,7 +40,7 @@ public class ReportServiceTest {
     @Test
     void findAllReportsOnDatabase() {
         when(repository.findAll()).thenReturn(ReportFactory.getReports());
-        List<Report> reports = service.findAll();
+        List<ReportResponse> reports = service.findAll();
         assertEquals(3, reports.size());
     }
 
@@ -46,9 +48,9 @@ public class ReportServiceTest {
     void givenReportId_thenReturnReport() {
         var reportId = 1L;
         when(repository.findById(reportId)).thenReturn(ReportFactory.getReport());
-        Report report = service.findById(reportId);
+        ReportResponse report = service.findById(reportId);
         assertNotNull(report);
-        assertEquals(reportId, report.getId());
+        assertEquals(reportId, report.id());
     }
 
     @Test

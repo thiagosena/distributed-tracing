@@ -1,6 +1,5 @@
 package com.thiagosena.service.report.application.web.controllers;
 
-import com.thiagosena.entities.Report;
 import com.thiagosena.service.report.application.web.payloads.ReportRequest;
 import com.thiagosena.service.report.application.web.payloads.ReportResponse;
 import com.thiagosena.service.report.domain.service.ReportService;
@@ -25,12 +24,12 @@ public class ReportController {
     }
 
     @GetMapping
-    List<Report> getAll() {
+    List<ReportResponse> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    Report getById(@PathVariable Long id) {
+    ReportResponse getById(@PathVariable Long id) {
         return service.findById(id);
     }
 
