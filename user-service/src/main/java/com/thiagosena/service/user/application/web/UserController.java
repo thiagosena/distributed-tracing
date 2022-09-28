@@ -25,6 +25,7 @@ public class UserController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     UserResponse newUser(@RequestBody UserRequest newUser) {
         return service.save(newUser);
     }
@@ -36,6 +37,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/{id}/generate-report")
+    @ResponseStatus(HttpStatus.CREATED)
     ReportResponse generateReport(@PathVariable Long id) {
         return this.service.createReportForCustomer(id);
     }
