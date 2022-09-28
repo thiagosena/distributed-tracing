@@ -15,7 +15,7 @@ distributed system.
 
 The collection of Spans that have the same root is considered to create a group called trace.
 
-## ✅ Requirements
+## 📐 Requirements
 
 - Git
 - JDK 17
@@ -83,3 +83,20 @@ Using a monorepo, we have the project structure as follows:
   <span>Figure 2: Project structure using monorepo</span>
 </p>
 
+## ✅ Tests Coverage With Jacoco
+
+### Report Service
+
+<p align="center">
+  <img width="800" src="docs/report-service-jacoco.png" alt="report-service jacoco"/>
+  <br/>
+  <span>Figure 3: Jacoco report-service test coverage</span>
+</p>
+
+### User Service
+
+<p align="center">
+  <img width="800" src="docs/user-service-jacoco.png" alt="user-service jacoco"/>
+  <br/>
+  <span>Figure 4: Jacoco user-service test coverage</span>
+</p>
