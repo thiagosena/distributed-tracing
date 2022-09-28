@@ -144,6 +144,7 @@ public class ReportControllerIntegrationTest {
                 .perform(MockMvcRequestBuilders.delete("/api/reports/" + reportId))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
 
+        // check if report was removed from database
         ReportNotFoundException thrown = assertThrows(
                 ReportNotFoundException.class,
                 () -> service.findById(reportId),
