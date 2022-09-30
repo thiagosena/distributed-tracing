@@ -100,3 +100,12 @@ Using a monorepo, we have the project structure as follows:
   <br/>
   <span>Figure 4: Jacoco user-service test coverage</span>
 </p>
+
+### Email Service
+
+<p align="center">
+  <img width="800" src="docs/email-service-jacoco.png" alt="email-service jacoco"/>
+  <br/>
+  <span>Figure 5: Jacoco email-service test coverage</span>
+</p>
+
