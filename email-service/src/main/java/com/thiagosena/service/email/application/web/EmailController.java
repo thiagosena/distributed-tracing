@@ -1,6 +1,5 @@
 package com.thiagosena.service.email.application.web;
 
-import com.thiagosena.entities.Email;
 import com.thiagosena.service.email.application.web.payloads.EmailResponse;
 import com.thiagosena.service.email.domain.service.EmailService;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ public class EmailController {
     }
 
     @GetMapping
-    public List<Email> getAll() {
+    public List<EmailResponse> getAll() {
         return service.findAll();
     }
 

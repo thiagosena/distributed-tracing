@@ -15,7 +15,7 @@ public class DatabasePreset {
     @Bean
     CommandLineRunner initDatabase(EmailRepository repository) {
         return args -> {
-            logger.info("Preloading " + repository.save(new Email("goku@email.com.", "{preloaded-report}")));
+            logger.info("Preloading " + repository.save(new Email("goku@email.com", "{preloaded-report}")));
             logger.info("Preloading " + repository.save(new Email("frodo@email.com", "{preloaded-report}")));
         };
     }

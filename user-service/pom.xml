@@ -42,6 +42,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- wiremock for mock report gateway -->
         <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock-jre8</artifactId>
