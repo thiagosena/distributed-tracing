@@ -49,7 +49,7 @@ public class ReportControllerIntegrationTest {
 
     private BlockingQueue<ConsumerRecord<String, String>> consumerRecords;
 
-    KafkaMessageListenerContainer<String, String> container;
+    private KafkaMessageListenerContainer<String, String> container;
 
     @Autowired
     private MockMvc mockMvc;
@@ -78,7 +78,7 @@ public class ReportControllerIntegrationTest {
     }
 
     @Test
-    void returnAllReportFromDatabase() throws Exception {
+    void shouldReturnAllReportFromDatabase() throws Exception {
         MvcResult result = this.mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/reports"))
                 .andExpect(MockMvcResultMatchers.status().isOk())

@@ -38,7 +38,7 @@ public class ReportServiceTest {
     }
 
     @Test
-    void findAllReportsOnDatabase() {
+    void shouldReturnAllReportsOnDatabase() {
         when(repository.findAll()).thenReturn(ReportFactory.getReports());
         List<ReportResponse> reports = service.findAll();
         assertEquals(3, reports.size());
