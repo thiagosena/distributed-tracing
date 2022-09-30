@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = UserServiceApplication.class)
-public class UserControllerTest {
+public class UserControllerIntegrationTest {
 
     private static final WireMockServer wireMockServer = new WireMockServer(wireMockConfig().port(5903)); //No-args constructor will start on port 8080, no HTTPS
     @Autowired
@@ -120,6 +120,7 @@ public class UserControllerTest {
         assertEquals(3L, response.id());
         assertEquals(userId, response.userId());
         assertEquals(reportText, response.report());
+
         wireMockServer.stop();
 
     }

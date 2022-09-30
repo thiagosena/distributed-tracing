@@ -27,10 +27,14 @@ public class UserServiceTest {
     private final UserService service = new UserServiceImpl(repository, reportGateway);
 
     @Test
-    void findAllUsersOnDatabase() {
+    void shouldReturnAllUsersOnDatabase() {
         when(repository.findAll()).thenReturn(UserFactory.getUsers());
 
         List<UserResponse> users = service.getAll();
+
+        verify(repository, times(1)).findAll();
+
+        assertNotNull(users);
         assertEquals(2, users.size());
         assertEquals(1, users.get(0).id());
         assertEquals("borabill", users.get(0).username());
@@ -42,6 +46,9 @@ public class UserServiceTest {
         when(repository.save(any())).thenReturn(new User(userRequest.username()));
 
         UserResponse user = service.save(userRequest);
+
+        verify(repository, times(1)).save(any());
+
         assertNotNull(user);
         assertEquals(userRequest.username(), user.username());
     }
@@ -50,7 +57,11 @@ public class UserServiceTest {
     void givenUserId_thenReturnUser() {
         var userId = 1L;
         when(repository.findById(userId)).thenReturn(Optional.of(UserFactory.getUsers().get(0)));
+
         UserResponse userResponse = service.findById(userId);
+
+        verify(repository, times(1)).findById(userId);
+
         assertNotNull(userResponse);
         assertEquals(userId, userResponse.id());
     }
@@ -59,11 +70,15 @@ public class UserServiceTest {
     void givenUserId_thenThrowUserNotFoundException() {
         var userId = 0L;
         when(repository.findById(userId)).thenReturn(Optional.empty());
+
         UserNotFoundException thrown = assertThrows(
                 UserNotFoundException.class,
                 () -> service.findById(userId),
                 "Expected UserNotFound, but it didn't"
         );
+
+        verify(repository, times(1)).findById(userId);
+
         assertEquals("Could not find user with id=" + userId, thrown.getMessage());
     }
 
