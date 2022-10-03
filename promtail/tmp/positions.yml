@@ -1,0 +1,5 @@
+positions:
+  /logs/api/user-service/user-service.log: "2897"
+  /var/log/dpkg.log: "2938"
+  /var/log/faillog: "0"
+  /var/log/lastlog: "0"

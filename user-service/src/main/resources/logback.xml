@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="LOG_FILE" value="./logs/user-service"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%1.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="RollingFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}/user-service.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d ${LOG_LEVEL_PATTERN} %C{1.} [%t] %m%n</Pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${LOG_FILE}/archived/user-service-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Appender to log to file in a JSON format -->
+    <!--    <appender name="logstash" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <file>${LOG_FILE}/user-service.json</file>-->
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--            <fileNamePattern>${LOG_FILE}.json.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+    <!--            <maxHistory>7</maxHistory>-->
+    <!--        </rollingPolicy>-->
+    <!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+    <!--            <providers>-->
+    <!--                <timestamp>-->
+    <!--                    <timeZone>UTC</timeZone>-->
+    <!--                </timestamp>-->
+    <!--                <pattern>-->
+    <!--                    <pattern>-->
+    <!--                        {-->
+    <!--                        "severity": "%level",-->
+    <!--                        "service": "${springAppName:-}",-->
+    <!--                        "trace": "%X{X-B3-TraceId:-}",-->
+    <!--                        "span": "%X{X-B3-SpanId:-}",-->
+    <!--                        "parent": "%X{X-B3-ParentSpanId:-}",-->
+    <!--                        "exportable": "%X{X-Span-Export:-}",-->
+    <!--                        "pid": "${PID:-}",-->
+    <!--                        "thread": "%thread",-->
+    <!--                        "class": "%logger{40}",-->
+    <!--                        "rest": "%message"-->
+    <!--                        }-->
+    <!--                    </pattern>-->
+    <!--                </pattern>-->
+    <!--            </providers>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <!--    <appender name="SevereRollingFile"-->
+    <!--              class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <file>${LOG_FILE}/severe-logger.log</file>-->
+    <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+    <!--            <level>WARN</level>-->
+    <!--        </filter>-->
+    <!--        <encoder-->
+    <!--                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+    <!--            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>-->
+    <!--        </encoder>-->
+
+    <!--        <rollingPolicy-->
+    <!--                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--            &lt;!&ndash; rollover daily and when the file reaches 10 MegaBytes &ndash;&gt;-->
+    <!--            <fileNamePattern>${LOG_FILE}/archived/severe-logger-%d{yyyy-MM-dd}.%i.log-->
+    <!--            </fileNamePattern>-->
+    <!--            <timeBasedFileNamingAndTriggeringPolicy-->
+    <!--                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+    <!--                <maxFileSize>10MB</maxFileSize>-->
+    <!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+    <!--        </rollingPolicy>-->
+    <!--    </appender>-->
+
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+        <appender-ref ref="Console"/>
+    </root>
+
+    <!-- LOG "com.thiagosena.*" at TRACE level -->
+    <logger name="com.thiagosena" level="trace" additivity="false">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+        <!--        <appender-ref ref="logstash"/>-->
+        <!--        <appender-ref ref="SevereRollingFile"/>-->
+    </logger>
+
+</configuration>
